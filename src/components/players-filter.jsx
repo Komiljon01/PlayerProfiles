@@ -12,7 +12,7 @@ import Spinner from "./spinner";
 function PlayersFilter() {
   const { request } = useHttp();
   const { filters, filtersLoadingStatus, activeFilter } = useSelector(
-    (state) => state
+    (state) => state.filters
   );
   const dispatch = useDispatch();
 
