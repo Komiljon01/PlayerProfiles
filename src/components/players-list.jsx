@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../hooks/use-http";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import {
+  playerDeleted,
   playersFetched,
   playersFetching,
   playersFetchingError,
@@ -12,7 +13,7 @@ import Empty from "./empty";
 import PlayersListItem from "./players-list-item";
 
 function PlayersList() {
-  const { players, playersLoadingStatus } = useSelector((state) => state);
+  const { filteredPlayers, playersLoadingStatus } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { request } = useHttp();
 
@@ -24,6 +25,15 @@ function PlayersList() {
       .catch(() => dispatch(playersFetchingError()));
   }, []);
 
+  const onDelete = useCallback(
+    (id) => {
+      request(`http://localhost:3000/players/${id}`, "DELETE")
+        .then(() => dispatch(playerDeleted(id)))
+        .catch((e) => console.log(e));
+    },
+    [request]
+  );
+
   if (playersLoadingStatus === "loading") {
     return <Spinner classNames={"w-8 h-8 block mx-auto text-white/70"} />;
   } else if (playersLoadingStatus === "error") {
@@ -31,12 +41,12 @@ function PlayersList() {
   }
 
   const renderPlayers = () => {
-    if (!players.length) {
+    if (!filteredPlayers.length) {
       return <Empty />;
     }
 
-    return players.map(({ id, ...props }) => (
-      <PlayersListItem key={id} {...props} />
+    return filteredPlayers.map(({ id, ...props }) => (
+      <PlayersListItem key={id} {...props} onDelete={() => onDelete(id)} />
     ));
   };
 

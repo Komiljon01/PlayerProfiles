@@ -17,13 +17,51 @@
       "name": "Odil Akhemdov",
       "country": "Uzbekistan",
       "continent": "Asia"
+    },
+    {
+      "id": "f482a826-2591-4276-93e8-acbe05035e7f",
+      "name": "Jakhongir",
+      "continent": "America",
+      "country": "London"
+    },
+    {
+      "id": "0dcdd456-5c88-4323-b0fc-93d5aaf626e5",
+      "name": "Komiljon",
+      "continent": "Asia",
+      "country": "Uzbekistan"
+    },
+    {
+      "id": "a2c7f6bd-502b-4985-b2f5-ef751d267e0e",
+      "name": "John",
+      "continent": "America",
+      "country": "New York"
     }
   ],
   "filters": [
-    { "id": "all", "label": "All" },
-    { "id": "europe", "label": "Europe" },
-    { "id": "asia", "label": "Asia" },
-    { "id": "africa", "label": "Africa" },
-    { "id": "america", "label": "America" }
+    {
+      "id": "all",
+      "label": "All",
+      "classes": "from-black to-slate-600 rounded-l-md"
+    },
+    {
+      "id": "europe",
+      "label": "Europe",
+      "classes": "from-blue-500 to-blue-700"
+    },
+    {
+      "id": "asia",
+      "label": "Asia",
+      "classes": "from-green-500 to-green-700"
+    },
+    {
+      "id": "africa",
+      "label": "Africa",
+      "classes": "from-yellow-500 to-yellow-700"
+    },
+    {
+      "id": "america",
+      "label": "America",
+      "classes": "from-cyan-500 to-cyan-700 rounded-r-md"
+    }
   ]
 }

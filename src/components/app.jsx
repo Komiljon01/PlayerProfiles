@@ -4,10 +4,10 @@ import PlayersList from "./players-list";
 
 const App = () => {
   return (
-    <div className="w-full h-screen relative app">
+    <div className="w-full min-h-screen relative app">
       <div className="absolute inset-0 bg-black/80 blur-3xl z-10" />
 
-      <div className="container max-w-6xl mx-auto h-full z-50 relative pt-12 grid grid-cols-2 gap-4">
+      <div className="container max-w-6xl mx-auto h-full z-50 relative py-12 grid grid-cols-2 gap-4">
         <PlayersList />
         <div>
           <PlayersAddForm />
