@@ -1,12 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../hooks/use-http";
 import { useCallback, useEffect } from "react";
-import {
-  playerDeleted,
-  playersFetched,
-  playersFetching,
-  playersFetchingError,
-} from "../actions";
+import { fetchPlayers, playerDeleted } from "../actions";
 import Spinner from "./spinner";
 import Error from "./error";
 import Empty from "./empty";
@@ -33,13 +28,7 @@ function PlayersList() {
   const dispatch = useDispatch();
   const { request } = useHttp();
 
-  useEffect(() => {
-    dispatch(playersFetching());
-
-    request("http://localhost:3000/players")
-      .then((data) => dispatch(playersFetched(data)))
-      .catch(() => dispatch(playersFetchingError()));
-  }, []);
+  useEffect(() => dispatch(fetchPlayers(request)), []);
 
   const onDelete = useCallback(
     (id) => {

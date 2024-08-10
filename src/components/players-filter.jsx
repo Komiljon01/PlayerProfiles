@@ -1,12 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../hooks/use-http";
 import { useEffect } from "react";
-import {
-  activeFilterChanged,
-  filtersFetched,
-  filtersFetching,
-  filtersFetchingError,
-} from "../actions";
+import { activeFilterChanged, fetchFilters } from "../actions";
 import Spinner from "./spinner";
 
 function PlayersFilter() {
@@ -16,13 +11,7 @@ function PlayersFilter() {
   );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(filtersFetching());
-
-    request("http://localhost:3000/filters")
-      .then((data) => dispatch(filtersFetched(data)))
-      .catch(() => dispatch(filtersFetchingError));
-  }, []);
+  useEffect(() => dispatch(fetchFilters(request)), []);
 
   if (filtersLoadingStatus === "loading") {
     return <Spinner classNames={"w-8 h-8 block mx-auto text-white/70"} />;

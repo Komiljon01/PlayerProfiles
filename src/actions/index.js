@@ -1,6 +1,14 @@
 // ACTIONS
 
 // Players
+export const fetchPlayers = (request) => (dispatch) => {
+  dispatch(playersFetching);
+
+  request("http://localhost:3000/players")
+    .then((data) => dispatch(playersFetched(data)))
+    .catch(() => dispatch(playersFetchingError));
+};
+
 export const playersFetching = () => {
   return { type: "PLAYERS_FETCHING" };
 };
@@ -22,6 +30,14 @@ export const playerDeleted = (id) => {
 };
 
 // Filters
+export const fetchFilters = (request) => (dispatch) => {
+  dispatch(filtersFetching());
+
+  request("http://localhost:3000/filters")
+    .then((data) => dispatch(filtersFetched(data)))
+    .catch(() => dispatch(filtersFetchingError));
+};
+
 export const filtersFetching = () => {
   return { type: "FILTERS_FETCHING" };
 };
