@@ -1,18 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useHttp } from "../hooks/use-http";
 import { useEffect } from "react";
-import { fetchFilters } from "../actions";
-import { activeFilterChanged } from "../slices/filters-slice";
+import { activeFilterChanged, fetchFilters } from "../slices/filters-slice";
 import Spinner from "./spinner";
 
 function PlayersFilter() {
-  const { request } = useHttp();
   const { filters, filtersLoadingStatus, activeFilter } = useSelector(
     (state) => state.filters
   );
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(fetchFilters(request)), []);
+  useEffect(() => {
+    dispatch(fetchFilters());
+  }, []);
 
   if (filtersLoadingStatus === "loading") {
     return <Spinner classNames={"w-8 h-8 block mx-auto text-white/70"} />;
@@ -28,7 +27,7 @@ function PlayersFilter() {
       <button
         key={id}
         className={`py-2 px-4 bg-gradient-to-r text-white hover:opacity-90 transition-all ${classes} ${
-          activeFilter === label && "text-black/70 font-bold"
+          activeFilter === label && "text-black/80 font-bold"
         }`}
         onClick={() => dispatch(activeFilterChanged(label))}
       >

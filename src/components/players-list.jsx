@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../hooks/use-http";
 import { useCallback, useEffect } from "react";
-import { fetchPlayers } from "../actions";
-import { playerDeleted } from "../slices/players-slice";
+import { fetchPlayers, playerDeleted } from "../slices/players-slice";
 import Spinner from "./spinner";
 import Error from "./error";
 import Empty from "./empty";
@@ -24,12 +23,14 @@ function PlayersList() {
 
   const filteredPlayers = useSelector(filteredPlayersSelector);
   const playersLoadingStatus = useSelector(
-    (state) => state.playersLoadingStatus
+    (state) => state.players.playersLoadingStatus
   );
   const dispatch = useDispatch();
   const { request } = useHttp();
 
-  useEffect(() => dispatch(fetchPlayers(request)), []);
+  useEffect(() => {
+    dispatch(fetchPlayers());
+  }, []);
 
   const onDelete = useCallback(
     (id) => {
