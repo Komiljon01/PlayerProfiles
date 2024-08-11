@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../hooks/use-http";
 import { useCallback, useEffect } from "react";
-import { fetchPlayers, playerDeleted } from "../actions";
+import { fetchPlayers } from "../actions";
+import { playerDeleted } from "../slices/players-slice";
 import Spinner from "./spinner";
 import Error from "./error";
 import Empty from "./empty";

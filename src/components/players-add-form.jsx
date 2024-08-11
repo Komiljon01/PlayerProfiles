@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import uuid4 from "uuid4";
 import { useHttp } from "../hooks/use-http";
-import { playerCreated, playersFetchingError } from "../actions";
+import { playerCreated, playersFetchingError } from "../slices/players-slice";
 
 function PlayersAddForm() {
   const { request } = useHttp();
-  const { filters, filtersLoadingStatus } = useSelector((state) => state.filters);
+  const { filters, filtersLoadingStatus } = useSelector(
+    (state) => state.filters
+  );
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {

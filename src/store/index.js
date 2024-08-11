@@ -1,6 +1,6 @@
 // STORE
-import players from "../reducer/players";
-import filters from "../reducer/filters";
+import players from "../slices/players-slice";
+import filters from "../slices/filters-slice";
 import { configureStore } from "@reduxjs/toolkit";
 
 const stringMiddleware = () => (next) => (action) => {
